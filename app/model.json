@@ -151,8 +151,92 @@
                         "name": "Ok"
                     }
                 ]
+            },
+            {
+                "id": "ActivityForm",
+                "title": "Activity",
+                "url": "/activity",
+                "formFieldList": [
+                    {
+                        "id": "name",
+                        "type": "text",
+                        "name": "ActivityName",
+                        "width": 2,
+                        "required": true
+                    },
+                    {
+                        "id": "description",
+                        "type": "text",
+                        "name": "Description",
+                        "width": 2,
+                        "height": 2
+                    },
+                    {
+                        "id": "date",
+                        "type": "date",
+                        "name": "Date",
+                        "width": 1
+                    },
+                    {
+                        "id": "location",
+                        "type": "autocomplete",
+                        "name": "Location",
+                        "url": "/location",
+                        "form": "LocationForm",
+                        "width": 2
+                    },
+                    {
+                        "id": "friends",
+                        "type": "multiselect",
+                        "name": "Participants",
+                        "url": "/friend",
+                        "form": "FriendForm",
+                        "width": 2
+                    },
+                    {
+                        "type": "deleteButton",
+                        "name": "Delete"
+                    },
+                    {
+                        "type": "cancelButton",
+                        "name": "Cancel"
+                    },
+                    {
+                        "type": "okButton",
+                        "name": "Ok"
+                    }
+                ]
+            },
+            {
+                "id": "AddFriendToActivityForm",
+                "title": "Add Friend to Activity",
+                "url": "/activity/:activityKey/friend",
+                "formFieldList": [
+                    {
+                        "id": "friend",
+                        "type": "autocomplete",
+                        "name": "Friend",
+                        "url": "/friend",
+                        "defaultKey": "friendKey",
+                        "readonly": true,
+                        "form": "FriendForm",
+                        "width": 2
+                    },
+                    {
+                        "type": "deleteButton",
+                        "name": "Delete"
+                    },
+                    {
+                        "type": "cancelButton",
+                        "name": "Cancel"
+                    },
+                    {
+                        "type": "okButton",
+                        "name": "Ok"
+                    }
+                ]
             }
-        ],
+        ], 
         "pageList": [
             {
                 "id": "mainmenu",
@@ -177,7 +261,14 @@
                         "icon":"fa-weixin",
                         "color":"wisteria",
                         "page":"groupspage"
-                }
+                    },
+                    {
+                        "type": "button",
+                        "name": "Activities",
+                        "icon": "fa-bicycle",
+                        "color": "red",
+                        "page": "activityspage"
+                    }
                 ]
             },
             {
@@ -201,6 +292,7 @@
                         "color": "blue",
                         "search": true,
                         "url": "/friend",
+                        "page": "friendactivitiespage",
                         "form": {
                             "form": "FriendForm"
                         }
@@ -258,6 +350,60 @@
                         "url": "/location",
                         "form": {
                             "form": "LocationForm"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "friendactivitiespage",
+                "elementList": [
+                    {
+                        "type": "backbutton"
+                    },
+                    {
+                        "type": "newButton",
+                        "name": "NewActivity",
+                        "icon": "fa-bicycle",
+                        "color": "green",
+                        "form": {
+                                "form": "AddActivityForm"
+                                }
+                    },
+                    {
+                        "type": "list",
+                        "icon": "fa-bicycle",
+                        "color": "blue",
+                        "search": true,
+                        "url": "/friend/:friendKey/activity",
+                        "form": {
+                            "form": "AddActivityForm"
+                        }
+                    }
+                ]
+            }, 
+            {
+                "id": "activityspage",
+                "elementList": [
+                    {
+                        "type": "backbutton"
+                    },
+                    {
+                        "type": "newButton",
+                        "name": "NewActivity",
+                        "icon": "fa-bicycle",
+                        "color": "green",
+                        "form": {
+                            "form": "ActivityForm"
+                        }
+                    },
+                    {
+                        "type": "list",
+                        "icon": "fa-bicycle",
+                        "color": "orange",
+                        "search": true,
+                        "url": "/activity",
+                        "form": {
+                            "form": "ActivityForm"
                         }
                     }
                 ]
